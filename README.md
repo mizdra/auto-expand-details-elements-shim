@@ -8,7 +8,7 @@ This script expands the `<details>` element if the fragment is inside the `<deta
 
 ## Demo
 
-- https://mizdra.github.io/auto-expand-details-when-scrolling-to-fragment
+- https://mizdra.github.io/auto-expand-details-for-element-fragment-navigation
 
 ## The source code of script
 
