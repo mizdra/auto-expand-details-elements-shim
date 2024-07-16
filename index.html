@@ -44,9 +44,7 @@
         if (!target) return;
         const details = target.closest("details");
         if (!details) return;
-        if (!details.open) {
-          details.open = true;
-        }
+        if (!details.open) details.open = true;
         openAncestorDetailsRecursively(details.parentElement);
       }
 
@@ -86,7 +84,9 @@
         <h2>Feature toggles</h2>
         <ul>
           <li>
-            <a href="./?shim=0">Disable shim for auto-expand details elements</a>
+            <a href="./?shim=0"
+              >Disable shim for auto-expand details elements</a
+            >
           </li>
           <li><a href="./?bfcache=0">Disable b/f cache</a></li>
           <li><a href="./?shim=0&bfcache=0">Disable both</a></li>
@@ -113,7 +113,8 @@
             >
           </li>
           <li>
-            <a href="https://github.com/mizdra/auto-expand-details-when-scrolling-to-fragment"
+            <a
+              href="https://github.com/mizdra/auto-expand-details-when-scrolling-to-fragment"
               >Go to repository</a
             >
           </li>
