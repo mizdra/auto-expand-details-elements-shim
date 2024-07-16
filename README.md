@@ -1,6 +1,10 @@
 # Auto-expand details elements for element fragment navigation
 
-This script expands the `<details>` element if the fragment is inside the `<details>` element. It mimics the behavior of the [Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature. The feature is not yet supported in all browsers. This script is a workaround for browsers that do not support the feature.
+This script expands the `<details>` element if the fragment is inside the `<details>` element. It mimics the behavior of the [Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature.
+
+
+## Why is this script needed?
+[Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature is not yet supported in all browsers. This script is a workaround for browsers that do not support the feature.
 
 ## Demo
 
