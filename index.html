@@ -5,48 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>auto-expand-details-elements-shim</title>
     <style>
-      html,
-      body {
-        margin: 0;
-        padding: 5px 10px 1000px;
-      }
-      /* Highlight the target element */
-      :target {
-        outline: 1px solid blue;
-      }
     </style>
-    <script type="module" defer>
-      /**
-       * @param {Element | null} target
-       */
-      function openAncestorDetailsRecursively(target) {
-        if (!target) return;
-        const details = target.closest("details");
-        if (!details) return;
-        if (!details.open) details.open = true;
-        openAncestorDetailsRecursively(details.parentElement);
-      }
-
-      const searchParams = new URLSearchParams(location.search);
-
-      if (searchParams.get("shim") !== "0") {
-        // Open ancestor details recursively when the page is loaded with a fragment
-        window.addEventListener("DOMContentLoaded", (event) => {
-          if (!location.hash.startsWith("#")) return;
-          const target = document.querySelector(location.hash);
-          openAncestorDetailsRecursively(target);
-        });
-        // Open ancestor details recursively when <a> element with a fragment is clicked
-        document.querySelectorAll("a").forEach((a) => {
-          a.addEventListener("click", (event) => {
-            const href = a.getAttribute("href");
-            if (!href || !href.startsWith("#")) return;
-            const target = document.querySelector(href);
-            openAncestorDetailsRecursively(target);
-          });
-        });
-      }
-    </script>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./shim.js" defer></script>
   </head>
   <body>
     <h2>Feature toggles</h2>
@@ -72,8 +33,8 @@
         >
       </li>
       <li>
-        <a href="https://example.com"
-          >Go to example.com (for browser back test)</a
+        <a href="./glossary"
+          >Go to ./glossary (for browser back test)</a
         >
       </li>
       <li>

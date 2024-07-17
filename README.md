@@ -24,14 +24,14 @@ function openAncestorDetailsRecursively(target) {
   openAncestorDetailsRecursively(details.parentElement);
 }
 // Open ancestor details recursively when the page is loaded with a fragment
-window.addEventListener("DOMContentLoaded", (event) => {
+window.addEventListener("DOMContentLoaded", () => {
   if (!location.hash.startsWith("#")) return;
   const target = document.querySelector(location.hash);
   openAncestorDetailsRecursively(target);
 });
 // Open ancestor details recursively when <a> element with a fragment is clicked
 document.querySelectorAll("a").forEach((a) => {
-  a.addEventListener("click", (event) => {
+  a.addEventListener("click", () => {
     const href = a.getAttribute("href");
     if (!href || !href.startsWith("#")) return;
     const target = document.querySelector(href);

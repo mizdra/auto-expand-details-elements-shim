@@ -1,0 +1,9 @@
+html,
+body {
+  margin: 0;
+  padding: 5px 10px 1000px;
+}
+/* Highlight the target element */
+:target {
+  outline: 1px solid blue;
+}
