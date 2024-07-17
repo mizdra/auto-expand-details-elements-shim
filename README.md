@@ -1,16 +1,16 @@
-# Auto-expand details elements for element fragment navigation
+# auto-expand-details-elements-shim
 
-This script expands the `<details>` element if the fragment is inside the `<details>` element. It mimics the behavior of the [Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature.
+This is a shim that automatically expands `<details>` elements during element fragment navigation. It mimics the behavior of the [Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature.
 
 
 ## Why is this script needed?
-[Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature is not yet supported in all browsers. This script is a workaround for browsers that do not support the feature.
+[Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature is not yet supported in all browsers. This shim is a workaround for browsers that do not support the feature.
 
 ## Demo
 
-- https://mizdra.github.io/auto-expand-details-for-element-fragment-navigation
+- https://mizdra.github.io/auto-expand-details-elements-shim
 
-## The source code of script
+## The source code of shim
 
 ```javascript
 /**
@@ -44,7 +44,7 @@ document.querySelectorAll("a").forEach((a) => {
 
 ## Note
 
-[Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature expands `<details>` elements when using find-in-page or ScrollToTextFragment. However, this script does not. This script only supports auto-expanding `<details>` elements for element fragment navigation.
+[Auto-expand details elements](https://chromestatus.com/feature/5032469667512320) feature expands `<details>` elements when using find-in-page or ScrollToTextFragment. However, this shim does not. This script only supports auto-expanding `<details>` elements during element fragment navigation.
 
 ## License
 
