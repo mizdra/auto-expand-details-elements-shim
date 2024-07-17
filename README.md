@@ -27,7 +27,6 @@ function openAncestorDetailsRecursively(target) {
 window.addEventListener("DOMContentLoaded", (event) => {
   if (!location.hash.startsWith("#")) return;
   const target = document.querySelector(location.hash);
-  // Open ancestor details recursively
   openAncestorDetailsRecursively(target);
 });
 // Open ancestor details recursively when <a> element with a fragment is clicked
@@ -36,7 +35,6 @@ document.querySelectorAll("a").forEach((a) => {
     const href = a.getAttribute("href");
     if (!href || !href.startsWith("#")) return;
     const target = document.querySelector(href);
-    // Open ancestor details recursively
     openAncestorDetailsRecursively(target);
   });
 });

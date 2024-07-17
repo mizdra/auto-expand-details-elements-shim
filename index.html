@@ -3,32 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Scrolling to fragments</title>
+    <title>auto-expand-details-elements-shim</title>
     <style>
-      :root {
-        --header-height: 50px;
-      }
       html,
       body {
         margin: 0;
-        padding: 0;
-      }
-      html {
-        scroll-padding-top: var(--header-height);
-      }
-      main {
-        padding: 5px 10px;
-        padding-bottom: 1000px;
-      }
-      .header {
-        position: sticky;
-        top: 0;
-        width: 100%;
-        height: var(--header-height);
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        line-height: var(--header-height);
+        padding: 5px 10px 1000px;
       }
       /* Highlight the target element */
       :target {
@@ -36,7 +16,6 @@
       }
     </style>
     <script type="module" defer>
-      // @ts-check
       /**
        * @param {Element | null} target
        */
@@ -51,106 +30,87 @@
       const searchParams = new URLSearchParams(location.search);
 
       if (searchParams.get("shim") !== "0") {
-        // Open ancestor details recursively when the page is loaded with hash
+        // Open ancestor details recursively when the page is loaded with a fragment
         window.addEventListener("DOMContentLoaded", (event) => {
           if (!location.hash.startsWith("#")) return;
           const target = document.querySelector(location.hash);
-          // Open ancestor details recursively
           openAncestorDetailsRecursively(target);
         });
+        // Open ancestor details recursively when <a> element with a fragment is clicked
         document.querySelectorAll("a").forEach((a) => {
           a.addEventListener("click", (event) => {
             const href = a.getAttribute("href");
             if (!href || !href.startsWith("#")) return;
             const target = document.querySelector(href);
-            // Open ancestor details recursively
             openAncestorDetailsRecursively(target);
           });
-        });
-      }
-      if (searchParams.get("bfcache") === "0") {
-        window.addEventListener("unload", (event) => {
-          console.log("unload", event);
         });
       }
     </script>
   </head>
   <body>
+    <h2>Feature toggles</h2>
+    <ul>
+      <li>
+        <a href="./?shim=0">Disable shim for auto-expand details elements</a>
+      </li>
+    </ul>
+    <h2>Table of Contents</h2>
+    <ul>
+      <li><a href="#scroll-to-element">Scroll to element</a></li>
+      <li>
+        <a href="#scroll-to-closed-details">Scroll to closed details</a>
+      </li>
+      <li>
+        <a href="#scroll-to-element-in-closed-details"
+          >Scroll to element in closed details</a
+        >
+      </li>
+      <li>
+        <a href="#scroll-to-nested-closed-details"
+          >Scroll to nested closed details</a
+        >
+      </li>
+      <li>
+        <a href="https://example.com"
+          >Go to example.com (for browser back test)</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://github.com/mizdra/auto-expand-details-when-scrolling-to-fragment"
+          >Go to repository</a
+        >
+      </li>
+    </ul>
+    <div id="scroll-to-element">Scroll to element</div>
     <div>
-      <header class="header">
-        <span>Header</span>
-      </header>
-      <main>
-        <h2>Feature toggles</h2>
-        <ul>
-          <li>
-            <a href="./?shim=0"
-              >Disable shim for auto-expand details elements</a
-            >
-          </li>
-          <li><a href="./?bfcache=0">Disable b/f cache</a></li>
-          <li><a href="./?shim=0&bfcache=0">Disable both</a></li>
-        </ul>
-        <h2>Table of Contents</h2>
-        <ul>
-          <li><a href="#scroll-to-element">Scroll to element</a></li>
-          <li>
-            <a href="#scroll-to-closed-details">Scroll to closed details</a>
-          </li>
-          <li>
-            <a href="#scroll-to-element-in-closed-details"
-              >Scroll to element in closed details</a
-            >
-          </li>
-          <li>
-            <a href="#scroll-to-nested-closed-details"
-              >Scroll to nested closed details</a
-            >
-          </li>
-          <li>
-            <a href="https://example.com"
-              >Go to example.com (for browser back test)</a
-            >
-          </li>
-          <li>
-            <a
-              href="https://github.com/mizdra/auto-expand-details-when-scrolling-to-fragment"
-              >Go to repository</a
-            >
-          </li>
-        </ul>
-        <div id="scroll-to-element">Scroll to element</div>
+      <details>
+        <summary id="scroll-to-closed-details">
+          Scroll to closed details
+        </summary>
+        This is a content.
+      </details>
+    </div>
+    <div>
+      <details>
+        <summary>Scroll to element in closed details</summary>
         <div>
+          <div id="scroll-to-element-in-closed-details">This is a content.</div>
+        </div>
+      </details>
+    </div>
+    <div>
+      <details>
+        <summary>nested-1</summary>
+        <details>
+          <summary>nested-2</summary>
           <details>
-            <summary id="scroll-to-closed-details">
-              Scroll to closed details
-            </summary>
+            <summary id="scroll-to-nested-closed-details">nested-3</summary>
             This is a content.
           </details>
-        </div>
-        <div>
-          <details>
-            <summary>Scroll to element in closed details</summary>
-            <div>
-              <div id="scroll-to-element-in-closed-details">
-                This is a content.
-              </div>
-            </div>
-          </details>
-        </div>
-        <div>
-          <details>
-            <summary>nested-1</summary>
-            <details>
-              <summary>nested-2</summary>
-              <details>
-                <summary id="scroll-to-nested-closed-details">nested-3</summary>
-                This is a content.
-              </details>
-            </details>
-          </details>
-        </div>
-      </main>
+        </details>
+      </details>
     </div>
   </body>
 </html>
