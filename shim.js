@@ -17,10 +17,9 @@ if (searchParams.get("shim") !== "0") {
     openAncestorDetailsRecursively(target);
   });
   // Open ancestor details recursively when <a> element with a fragment is clicked
-  document.querySelectorAll("a").forEach((a) => {
+  document.querySelectorAll("a[href^='#']").forEach((a) => {
     a.addEventListener("click", () => {
       const href = a.getAttribute("href");
-      if (!href || !href.startsWith("#")) return;
       const target = document.querySelector(href);
       openAncestorDetailsRecursively(target);
     });
