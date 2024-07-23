@@ -13,7 +13,7 @@ if (searchParams.get("shim") !== "0") {
   // Open ancestor details recursively when the page is loaded with a fragment
   window.addEventListener("DOMContentLoaded", () => {
     if (!location.hash.startsWith("#")) return;
-    const target = document.querySelector(location.hash);
+    const target = document.getElementById(CSS.escape(location.hash.slice(1)));
     openAncestorDetailsRecursively(target);
   });
   // Open ancestor details recursively when <a> element with a fragment is clicked
@@ -21,7 +21,7 @@ if (searchParams.get("shim") !== "0") {
     a.addEventListener("click", () => {
       const href = a.getAttribute("href");
       if (!href || !href.startsWith("#")) return;
-      const target = document.querySelector(href);
+      const target = document.getElementById(CSS.escape(href.slice(1)));
       openAncestorDetailsRecursively(target);
     });
   });
